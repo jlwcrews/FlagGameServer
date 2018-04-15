@@ -6,6 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class FlagGameServer implements Runnable {
     private ObjectOutputStream output;
@@ -13,6 +14,7 @@ public class FlagGameServer implements Runnable {
     private ServerSocket server;
     private Socket socket;
     private FlagGameServerController fgsc;
+    private ArrayList<Flag> flags;
 
     public FlagGameServer(FlagGameServerController fgsc){
         this.fgsc = fgsc;
@@ -68,21 +70,11 @@ public class FlagGameServer implements Runnable {
         do{
             try {
                 String message = input.readObject().toString();
-                switch (message) {
-                    case "easy":
-                        fgsc.showMessage("Game type: " + message);
-                        //returnFlags("easy");
-                        break;
-                    case "medium":
-                        fgsc.showMessage("Game type: " + message);
-                        //returnFlags("medium");
-                        break;
-                    case "hard":
-                        fgsc.showMessage("Game type: " + message);
-                        //returnFlags("hard");
-                        break;
-                    default:
-                        fgsc.showMessage(message + " is not a valid message.");
+                fgsc.showMessage(message);
+                FlagData flagData = new FlagData();
+                flags = flagData.returnFlags(message);
+                for(Flag flag : flags){
+                    fgsc.showMessage(flag.getCountry());
                 }
             } catch (ClassNotFoundException cnfException) {
                 fgsc.showMessage("Invalid input");
