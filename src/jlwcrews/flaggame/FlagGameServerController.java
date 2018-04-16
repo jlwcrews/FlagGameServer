@@ -1,4 +1,4 @@
-package jlwcrews.flaggameserver;
+package jlwcrews.flaggame;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

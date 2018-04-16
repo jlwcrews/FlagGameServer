@@ -1,4 +1,4 @@
-package jlwcrews.flaggameserver;
+package jlwcrews.flaggame;
 
 import java.io.EOFException;
 import java.io.IOException;
