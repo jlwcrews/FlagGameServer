@@ -73,9 +73,8 @@ public class FlagGameServer implements Runnable {
                 fgsc.showMessage(message);
                 FlagData flagData = new FlagData();
                 flags = flagData.returnFlags(message);
-                for(Flag flag : flags){
-                    fgsc.showMessage(flag.getCountry());
-                }
+                output.writeObject(flags);
+
             } catch (ClassNotFoundException cnfException) {
                 fgsc.showMessage("Invalid input");
             }
