@@ -40,6 +40,7 @@ public class FlagGameServer implements Runnable {
                     whileConnected();
                 } catch (EOFException eof) {
                     fgsc.showMessage("Server ended the connection.");
+                    closeConnection();
                 } finally {
                     closeConnection();
                 }

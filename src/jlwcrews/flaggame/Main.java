@@ -1,6 +1,7 @@
 package jlwcrews.flaggame;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,7 +24,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         //just puts up the javafx scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("flaggameserver.fxml"));
         Parent root = loader.load();
@@ -32,6 +33,4 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
     }
-
-
 }
