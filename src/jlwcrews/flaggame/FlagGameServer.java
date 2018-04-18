@@ -4,6 +4,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class FlagGameServer implements Runnable {
     private void waitForConnection() throws IOException {
         fgsc.showMessage("Waiting for connection");
         socket = server.accept();
-        fgsc.showMessage("Connected to " + server.getInetAddress().getHostName());
+        fgsc.showMessage("Connected to " + (((InetSocketAddress) socket.getRemoteSocketAddress()).getAddress()).toString().replace("/",""));
     }
 
     //once the connection is established, set up the streams
