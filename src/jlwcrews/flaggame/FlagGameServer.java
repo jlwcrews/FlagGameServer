@@ -70,7 +70,7 @@ public class FlagGameServer implements Runnable {
         do{
             try {
                 String message = input.readObject().toString();
-                fgsc.showMessage(message);
+                fgsc.showMessage("Game difficulty request: " + message);
                 FlagData flagData = new FlagData();
                 flags = flagData.returnFlags(message);
                 output.writeObject(flags);
