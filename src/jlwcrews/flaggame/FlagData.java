@@ -3,11 +3,15 @@ package jlwcrews.flaggame;
 import java.sql.*;
 import java.util.ArrayList;
 
+//class that handles the database connection, and retrieves the requested flag data and sends
+//it back to the FlagGameServer
 public class FlagData{
 
     private ArrayList<Flag> flags;
 
+    //connection details for the sqlite db
     private Connection dbConnect() {
+        //db needs to be in the root directory of the server
         String url = "jdbc:sqlite:flags.db";
         Connection conn = null;
         try {
@@ -39,7 +43,8 @@ public class FlagData{
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             flags = new ArrayList<>();
-            // loop through the result set
+            // loop through the result set, wrapping the results in a Flag class and
+            //adding to the flags ArrayList
             while (rs.next()) {
                 Flag flag = new Flag();
                 flag.setCountry(rs.getString("country"));

@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+//This class is the server object, running in a separate thread
 public class FlagGameServer implements Runnable {
     private ObjectOutputStream output;
     private ObjectInputStream input;
@@ -16,10 +17,12 @@ public class FlagGameServer implements Runnable {
     private FlagGameServerController fgsc;
     private ArrayList<Flag> flags;
 
+    //fgsc allows me to update the GUI elements in the controller
     public FlagGameServer(FlagGameServerController fgsc){
         this.fgsc = fgsc;
     }
 
+    //required when implementing Runnable, starts the server
     @Override
     public void run() {
         startServer();
@@ -66,6 +69,9 @@ public class FlagGameServer implements Runnable {
     }
 
     //while the user is connected, read the input stream and check for game mode
+    //once the game difficulty request is received, creates a new instance of the
+    //database handler class, and once it receives the populated flags arraylist
+    //serializes the arraylist through the socket to the client
     private void whileConnected() throws IOException {
         do{
             try {
@@ -74,6 +80,7 @@ public class FlagGameServer implements Runnable {
                 FlagData flagData = new FlagData();
                 flags = flagData.returnFlags(message);
                 output.writeObject(flags);
+                fgsc.showMessage(flags.size() + " flags sent");
 
             } catch (ClassNotFoundException cnfException) {
                 fgsc.showMessage("Invalid input");

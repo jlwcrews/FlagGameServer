@@ -2,8 +2,12 @@ package jlwcrews.flaggame;
 
 import java.io.Serializable;
 
+//container class for the flag object.
 public class Flag implements Serializable{
 
+    //serialVersionUID is necessary in order to be able to serialize the Flag
+    //objects between the client and server
+    //Otherwise, standard getters/setters, several of which are never used
     private static final long serialVersionUID = 1L;
     private int flag_id;
     private String flag;

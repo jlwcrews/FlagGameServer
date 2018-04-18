@@ -2,13 +2,13 @@ package jlwcrews.flaggame;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+//controller for the FXML file
 public class FlagGameServerController implements Initializable{
 
     @FXML
@@ -18,8 +18,6 @@ public class FlagGameServerController implements Initializable{
     private Pane serverStatusPane;
 
     @FXML
-    private ListView<?> userListView;
-
     private ArrayList<Flag> flags;
 
     public static FlagGameServerController fgsc;
@@ -34,6 +32,5 @@ public class FlagGameServerController implements Initializable{
 
     public void showMessage(String message) {
         messageTextArea.appendText(message + "\n");
-
     }
 }
